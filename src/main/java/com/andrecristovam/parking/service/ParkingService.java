@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.andrecristovam.parking.domain.Parking;
+import com.andrecristovam.parking.exception.ParkingNotFoundException;
 
 
 
@@ -35,8 +36,13 @@ public class ParkingService {
 		return UUID.randomUUID().toString().replace("-", "");
 	}
 
-	public Parking findById(String id) {		
-		return parkingMap.get(id);
+	public Parking findById(String id) throws ParkingNotFoundException {
+		var parking = parkingMap.get(id);
+		
+		if (parking == null) {
+			throw new ParkingNotFoundException(id);
+		}
+		return parking;
 	}
 
 	public Parking create(Parking parkingCreate) {
@@ -45,5 +51,19 @@ public class ParkingService {
 		parkingCreate.setEntryDate(LocalDateTime.now());
 		parkingMap.put(uuid, parkingCreate);
 		return parkingCreate;
+	}
+
+	public void delete(String id) {
+		findById(id);
+		parkingMap.remove(id);
+	}
+
+	public Parking update(String id, Parking parkingDTO) {
+		Parking parking = findById(id);
+		parking.setColor(parkingDTO.getColor());
+		parking.setLicense(parkingDTO.getLicense());
+		parking.setModel(parkingDTO.getModel());
+		parking.setEntryDate(parkingDTO.getEntryDate());
+		return parking;
 	}
 }
