@@ -17,17 +17,8 @@ import com.andrecristovam.parking.exception.ParkingNotFoundException;
 @Service
 public class ParkingService {
 	
-	private static Map<String, Parking> parkingMap = new HashMap<>();
-	
-	static {
-		var id = getUUID();
-		var id2 = getUUID();
-		Parking parking = Parking.builder().id(id).license("DMS-1111").state("SC").model("CELTA").color("PRETO").build();
-		Parking parking2 = Parking.builder().id(id2).license("WAS-2222").state("SP").model("GOL").color("VERMELHO").build();
-		parkingMap.put(id, parking);
-		parkingMap.put(id2, parking2);
-	}
-	
+	private static Map<String, Parking> parkingMap = new HashMap<>();	
+		
 	public List<Parking> findAll() {
 		return parkingMap.values().stream().collect(Collectors.toList());
 	}
