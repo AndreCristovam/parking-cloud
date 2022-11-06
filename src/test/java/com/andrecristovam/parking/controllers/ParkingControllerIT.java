@@ -15,7 +15,7 @@ import io.restassured.RestAssured;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ParkingControllerIT {
+public class ParkingControllerIT extends AbstratcContainerBase{
 	
 	@LocalServerPort
 	private int randonPort;
