@@ -1,11 +1,8 @@
-package com.andrecristovam.parking.service;
+package com.andrecristovam.parking.service.impl;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,15 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.andrecristovam.parking.domain.Parking;
 import com.andrecristovam.parking.exception.ParkingNotFoundException;
 import com.andrecristovam.parking.repository.IParkingRepository;
+import com.andrecristovam.parking.service.IParkingService;
 
 
 
 @Service
-public class ParkingService {		
+public class ParkingServiceImp implements IParkingService{		
 		
 	private final IParkingRepository repository;
 	
-	public ParkingService(IParkingRepository repository) {
+	public ParkingServiceImp(IParkingRepository repository) {
 		this.repository = repository;
 	}
 	
@@ -70,7 +68,7 @@ public class ParkingService {
 	public Parking checkOut(String id) {
 		var parking = findById(id);
 		parking.setExitDate(LocalDateTime.now());
-		parking.setBill(ParkingCheckOut.getBill(parking));
+		parking.setBill(ParkingCheckOutImp.getBill(parking));
 		repository.save(parking);
 		return parking;
 	}

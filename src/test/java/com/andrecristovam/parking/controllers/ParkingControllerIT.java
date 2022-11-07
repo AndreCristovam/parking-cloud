@@ -29,6 +29,8 @@ public class ParkingControllerIT extends AbstratcContainerBase{
 	@Test
 	void whenFindAllThenCheckResult() {
 		RestAssured.given()
+			.auth()
+			.basic("user", "root")
 			.when()
 			.get("/parkings")
 			.then()
@@ -40,6 +42,8 @@ public class ParkingControllerIT extends AbstratcContainerBase{
 		var createDTO = ParkingCreateDTO.builder().license("WRT-5555").state("SP").model("BRASILIA").color("AMARELO").build();
 		
 		RestAssured.given()
+		.auth()
+		.basic("user", "root")
 		.when()
 		.contentType(MediaType.APPLICATION_JSON_VALUE)
 		.body(createDTO)

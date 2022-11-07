@@ -1,11 +1,11 @@
-package com.andrecristovam.parking.service;
+package com.andrecristovam.parking.service.impl;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 import com.andrecristovam.parking.domain.Parking;
 
-public class ParkingCheckOut {
+public class ParkingCheckOutImp {
 	
 	public static final int ONE_HOUR = 60;
 	public static final int TWENTY_FOUR_HOUR = 24 * ONE_HOUR;

@@ -17,7 +17,8 @@ import com.andrecristovam.parking.controllers.mapper.ParkingMapper;
 import com.andrecristovam.parking.domain.Parking;
 import com.andrecristovam.parking.domain.dto.ParkingCreateDTO;
 import com.andrecristovam.parking.domain.dto.ParkingDTO;
-import com.andrecristovam.parking.service.ParkingService;
+import com.andrecristovam.parking.service.IParkingService;
+import com.andrecristovam.parking.service.impl.ParkingServiceImp;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,10 +30,10 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "Parking Controller")
 public class ParkingController {	
 	
-	private final ParkingService service;
+	private final IParkingService service;
 	private final ParkingMapper parkingMapper;
 	
-	public ParkingController(ParkingService service, ParkingMapper parkingMapper) {		
+	public ParkingController(ParkingServiceImp service, ParkingMapper parkingMapper) {		
 		this.service = service;
 		this.parkingMapper = parkingMapper;
 	}
