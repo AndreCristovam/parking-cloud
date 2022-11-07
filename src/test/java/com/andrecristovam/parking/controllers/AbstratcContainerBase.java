@@ -1,16 +1,17 @@
 package com.andrecristovam.parking.controllers;
 
-import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.containers.MySQLContainer;
+
 
 public abstract class AbstratcContainerBase {
 
-	static final PostgreSQLContainer POSTGRE_SQL_CONTAINER;
+	static final MySQLContainer  MYSQL_CONTAINER;
 	
 	static {
-		POSTGRE_SQL_CONTAINER = new PostgreSQLContainer("postgres:10-alpine");
-		POSTGRE_SQL_CONTAINER.start();
-		System.setProperty("spring.datasource.url", POSTGRE_SQL_CONTAINER.getJdbcUrl());
-		System.setProperty("spring.datasource.username", POSTGRE_SQL_CONTAINER.getUsername());
-		System.setProperty("spring.datasource.password", POSTGRE_SQL_CONTAINER.getPassword());
+		MYSQL_CONTAINER = new MySQLContainer ("mysql:latest");
+		MYSQL_CONTAINER.start();
+		System.setProperty("spring.datasource.url", MYSQL_CONTAINER.getJdbcUrl());
+		System.setProperty("spring.datasource.username", MYSQL_CONTAINER.getUsername());
+		System.setProperty("spring.datasource.password", MYSQL_CONTAINER.getPassword());
 	}
 }
